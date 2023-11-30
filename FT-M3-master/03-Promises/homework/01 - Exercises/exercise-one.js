@@ -20,34 +20,51 @@ args.forEach(function (arg) {
 
 function problemA() {
   // callback version
-  exerciseUtils.readFile("poem-one/stanza-02.txt", function (err, stanza2) {
+ /*  exerciseUtils.readFile("poem-one/stanza-02.txt", function (err, stanza2) {
     exerciseUtils.blue(stanza2);
     exerciseUtils.readFile("poem-one/stanza-03.txt", function (err, stanza3) {
       exerciseUtils.blue(stanza3);
     });
-  });
+  }); */
 
   // promise version
   // Tu código acá:
+  exerciseUtils.promisifiedReadFile('poem-one/stanza-02.txt')
+    .then(stanza_02 => { 
+      exerciseUtils.blue(stanza_02);
+      return exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt')
+    })
+    .then(stanza_03 => exerciseUtils.blue(stanza_03))
+ 
 }
 
 function problemB() {
   // callback version
-  exerciseUtils.readFile(
+  /*  exerciseUtils.readFile(
     "poem-one/wrong-file-name.txt",
     function (err, stanza4) {
       if (err) exerciseUtils.magenta(new Error(err));
       else exerciseUtils.blue(stanza4);
     }
-  );
+  );  */
 
   // promise version
   // Tu código acá:
+  exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt')
+    .then(response => {
+      exerciseUtils.blue(response);
+     
+    })
+    .catch(error => {
+      exerciseUtils.magenta(new Error(error));
+  })
+
+
 }
 
 function problemC() {
   // callback version
-  exerciseUtils.readFile("poem-one/stanza-03.txt", function (err, stanza3) {
+  /* exerciseUtils.readFile("poem-one/stanza-03.txt", function (err, stanza3) {
     if (err) return exerciseUtils.magenta(new Error(err));
     exerciseUtils.blue(stanza3);
     exerciseUtils.readFile(
@@ -57,8 +74,16 @@ function problemC() {
         exerciseUtils.blue(stanza4);
       }
     );
-  });
+  }); */
 
   // promise version
   // Tu código acá:
+
+  exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt')
+    .then(stanza => {
+      exerciseUtils.blue(stanza);
+      return exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt')
+    })
+    .then(stanza => exerciseUtils.blue(stanza))
+  .catch(error => exerciseUtils.magenta(new Error(error)))
 }
