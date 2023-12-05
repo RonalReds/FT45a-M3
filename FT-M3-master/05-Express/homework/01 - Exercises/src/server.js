@@ -58,7 +58,7 @@ server.put('/posts/:id', (req, res) => {
         if (!publicationFiltered) {
             res.status(404).json({error: "No se recibió el id correcto necesario para modificar la publicación"})
         } else {
-            publicationFiltered = {...publicationFiltered. title, contents}
+            publicationFiltered = {...publicationFiltered, title, contents}
         }
     } else {
         res.status(404).json({error: "No se recibieron los parámetros necesarios para modificar la publicación"})
