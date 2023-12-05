@@ -41,6 +41,8 @@ async function problemA() {
 
   // asyncawait version
   // Tu código acá:
+  exerciseUtils.blue( await exerciseUtils.promisifiedReadFile("poem-one/stanza-01.txt"))
+
 }
 
 async function problemB() {
@@ -56,6 +58,13 @@ async function problemB() {
 
   // asyncawait version
   // Tu código acá:
+
+  async function printStanza(file) {
+    exerciseUtils.blue(await exerciseUtils.promisifiedReadFile(file))
+  }
+  printStanza('poem-one/stanza-02.txt')
+  printStanza('poem-one/stanza-03.txt')
+
 }
 
 async function problemC() {
@@ -72,6 +81,11 @@ async function problemC() {
 
   // asyncawait version
   // Tu código acá:
+
+
+  exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/stanza-02.txt'))
+  exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt'))
+  console.log('done');
 }
 
 async function problemD() {
@@ -87,6 +101,12 @@ async function problemD() {
 
   // asyncawait version
   // Tu código acá:
+    try {
+      exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt'));
+    } catch (error) {
+      exerciseUtils.magenta(new Error(error));
+    }
+
 }
 
 async function problemE() {
@@ -107,6 +127,12 @@ async function problemE() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt'));
+    exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt'));
+  } catch (error) {
+    exerciseUtils.magenta(new Error(error));
+  }
 }
 
 async function problemF() {
@@ -132,4 +158,15 @@ async function problemF() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt'));
+    exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/stanza-04.txt'));
+
+    exerciseUtils.blue(await exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt'));
+
+  } catch (error) {
+    exerciseUtils.magenta(new Error(error));
+  } finally {
+    console.log('done');
+  }
 }
